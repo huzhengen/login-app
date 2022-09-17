@@ -1,0 +1,278 @@
+@mixin bg-image($picname) {
+  background-image: url("./assets/" + $picname + "@2x.png");
+  @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+    background-image: url("./assets/" + $picname + "@3x.png");
+  }
+}
+
+#root {
+}
+
+input[type="submit"],
+input[type="text"],
+input[type="button"],
+input[type="number"],
+select,
+button {
+  -webkit-appearance: none;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #B1B3B8;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #B1B3B8;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #B1B3B8;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(247, 247, 250);
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  width: 960px;
+  height: 640px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  background: url("./assets/pc_banner.png") left center no-repeat;
+
+  h2 {
+    display: none;
+  }
+
+  .login {
+    width: 400px;
+    min-height: 402px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: 0 0 20px 0 rgba(187, 191, 196, 0.30);
+    border-radius: 12px;
+    padding: 0 40px;
+
+
+    h3 {
+      font-size: 28px;
+      color: #333333;
+      letter-spacing: 0;
+      font-weight: 500;
+      margin: 40px 0;
+      text-align: left;
+      width: 100%;
+    }
+
+    .input_wrap {
+      width: 100%;
+      position: relative;
+      margin: 20px 0 0 0;
+
+      > i {
+        width: 50px;
+        height: 100%;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      &.username {
+        margin: 0;
+
+        > i {
+          background: url("./assets/pc_emall.png") center center no-repeat;
+        }
+      }
+
+      &.password {
+        > i {
+          background: url("./assets/pc_password.png") center center no-repeat;
+        }
+      }
+
+      input {
+        width: 100%;
+        border: 1px solid #D0D3D6;
+        border-radius: 6px;
+        padding: 10px 0 10px 50px;
+        outline: none;
+        font-size: 16px;
+        color: #3B3C3D;
+        letter-spacing: 0;
+        font-weight: 400;
+      }
+
+      input:focus, input:hover {
+        border: 1px solid #3371FF;
+      }
+
+      input.error {
+        border: 1px solid #FA5757;
+      }
+    }
+
+    button {
+      outline: none;
+
+      &.next {
+        background: #BBBFC4;
+        border-radius: 6px;
+        margin: 20px 0 0 0;
+        width: 100%;
+        height: 40px;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        letter-spacing: 0;
+        text-align: center;
+        font-weight: 400;
+
+        &:disabled {
+          cursor: not-allowed;
+        }
+
+        &.active {
+          background: #3371FF;
+        }
+      }
+    }
+
+    .input_error_message {
+      font-size: 12px;
+      color: #FB797A;
+      letter-spacing: 0;
+      font-weight: 400;
+      text-align: left;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+
+    span.login_error_message {
+      font-size: 14px;
+      color: #FC6161;
+      letter-spacing: 0;
+      text-align: center;
+      font-weight: 400;
+      margin-top: 20px;
+    }
+
+    hr {
+      border: 1px solid #D0D3D6;
+      width: 100%;
+      margin-top: 60px;
+    }
+
+    a.other {
+      margin: 20px 0 20px 0;
+      font-size: 14px;
+      color: #3371FF;
+      letter-spacing: 0;
+      font-weight: 400;
+      text-decoration: none;
+    }
+
+    span.avatar {
+      width: 72px;
+      height: 72px;
+      background: url("./assets/pc_tx.png") no-repeat;
+      background-size: cover;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+    height: 100vh;
+    @include bg-image('iPhone_banner');
+    background-position: bottom;
+    background-size: contain;
+    flex-direction: column;
+    justify-content: left;
+
+    h2 {
+      font-size: 36px;
+      color: #333333;
+      letter-spacing: 0;
+      font-weight: 500;
+      margin: 10% 0;
+      display: block;
+    }
+
+    .login {
+      width: 92%;
+      margin: 0 auto;
+      background: #FFFFFF;
+      box-shadow: 0 0 20px 0 rgba(187, 191, 196, 0.30);
+      border-radius: 32px;
+
+      .input_wrap {
+        &.username {
+          > i {
+            @include bg-image('iphone_emall');
+            background-repeat: no-repeat;
+            background-size: auto 20px;
+          }
+        }
+
+        &.password {
+          > i {
+            @include bg-image('iphone_password');
+            background-repeat: no-repeat;
+            background-size: auto 20px;
+          }
+        }
+      }
+
+      span.login_error_message {
+        background: #FC6161;
+        box-shadow: 0 0 14px 0 rgba(133, 137, 143, 0.40);
+        border-radius: 8px;
+        color: #FFFFFF;
+        letter-spacing: 0;
+        text-align: center;
+        font-weight: 400;
+        padding: 10px 10px;
+      }
+    }
+  }
+}
