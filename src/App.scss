@@ -273,6 +273,11 @@ body {
         font-weight: 400;
         padding: 10px 10px;
       }
+
+      span.avatar{
+        background: url("./assets/iphone_tx.png") no-repeat;
+        background-size: cover;
+      }
     }
   }
 }

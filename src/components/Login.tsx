@@ -1,5 +1,4 @@
 import {ChangeEvent, useState, useEffect, useRef} from 'react'
-import {Link, useNavigate} from 'react-router-dom'
 import {Title} from "./Title";
 import {Button} from "./Button";
 import {Message} from './Message'
@@ -7,8 +6,8 @@ import {Input} from "./Input";
 import {request} from "../request";
 import {debounce} from "lodash";
 
-export const Login = () => {
-  const navigate = useNavigate();
+export const Login = (props: { change: (isShow: boolean) => void }) => {
+  const {change} = props
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [showUsernameErrorMessage, setShowUsernameErrorMessage] = useState(false)
@@ -81,7 +80,7 @@ export const Login = () => {
     })
     if (res.data.status === 0) {
       localStorage.setItem('token', res.data.data.token)
-      navigate("/verify");
+      change(true)
     } else {
       setShowLoginErrorMessage(true)
       setErrorMessage(res.data.message)
@@ -111,10 +110,6 @@ export const Login = () => {
       )}
       <Button disabled={!hasVerified} onClick={debounceLogin}>下一步</Button>
       {showLoginErrorMessage && (<Message className='login_error_message'>{errorMessage}</Message>)}
-      <hr/>
-      <Link to="/login" className="other">
-        其他方式登录
-      </Link>
     </>
   )
 }
